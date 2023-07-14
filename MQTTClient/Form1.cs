@@ -1,12 +1,6 @@
 ﻿using MQTTClient.MQTT;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -17,7 +11,7 @@ namespace MQTTClient
         public Form1()
         {
             InitializeComponent();
-            FormClosing += new FormClosingEventHandler(Closing);
+            FormClosing += new FormClosingEventHandler(closing);
             MqttManager.Instance.ReceiveResponseCallback += CallbackResponseEvent;
             this.MqttDisConnectbutton.Enabled = false;
             this.MqttSubscribButton.Enabled = false;
@@ -128,7 +122,7 @@ namespace MQTTClient
 
         }
 
-        private void Closing(object sender, FormClosingEventArgs e)
+        private void closing(object sender, FormClosingEventArgs e)
         {
             _ = MqttManager.Instance.Clean_Disconnect().Result;
 
